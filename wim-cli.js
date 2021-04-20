@@ -24,6 +24,10 @@ function getPackageLockPath(type) {
     return path.resolve(process.cwd(), type === 'npm' ? 'package-lock.json' : 'yarn.lock');
 }
 
+function getNodeModulesPath(module) {
+    return path.resolve(process.cwd(), 'node_modules', module)
+}
+
 /**
  * @description getLockFileContent
  * @param {string} type
@@ -152,7 +156,7 @@ inquirer
         list = _.map(list, item => {
             if (item.depth === 0) {
                 try {
-                    item.local = require(`${item.name}/package.json`)._shasum;
+                    item.local = require(getNodeModulesPath(`${item.name}/package.json`))._shasum;
                 }
                 catch (e) {
                     if (debugFlag) {
@@ -163,14 +167,14 @@ inquirer
             else {
                 let i;
                 item.parents.forEach((parent, index) => {
-                    if (fs.existsSync(`${parent}/node_modules/${item.name}`)) {
+                    if (fs.existsSync(getNodeModulesPath(`${parent}/node_modules/${item.name}`))) {
                         i = index;
                     }
                 });
 
                 if (i !== undefined) {
                     try {
-                        item.local = require(`${item.parents[i]}/node_modules/${item.name}/package.json`)._shasum;
+                        item.local = require(getNodeModulesPath(`${item.parents[i]}/node_modules/${item.name}/package.json`))._shasum;
                     }
                     catch (e) {
                         if (debugFlag) {
