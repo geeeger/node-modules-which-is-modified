@@ -1,0 +1,32 @@
+{
+  "name": "modules-which-is-modified",
+  "version": "1.0.0",
+  "description": "比对",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geeeger/node-modules-which-is-modified.git"
+  },
+  "author": "geeeger",
+  "bin": {
+    "wim-cli": "./wim-cli.js"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/geeeger/node-modules-which-is-modified/issues"
+  },
+  "homepage": "https://github.com/geeeger/node-modules-which-is-modified#readme",
+  "dependencies": {
+    "@geeeger/deferred": "1.0.0",
+    "flatten-package-lock-deps": "0.0.4",
+    "fs-extra": "9.1.0",
+    "inquirer": "8.0.0",
+    "lodash": "4.17.21",
+    "node-fetch": "2.6.1",
+    "snyk-nodejs-lockfile-parser": "1.32.0",
+    "throat": "6.0.1"
+  }
+}
